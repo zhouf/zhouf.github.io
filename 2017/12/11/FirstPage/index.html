@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,7 +87,7 @@
 <meta property="og:description" content="之前在github上试用了一个博客系统，用Jekyll写的，还不错，只是后面一直没有更新内容，最近又重新有了这样的想法，就来关注一下，发现Hexo，看上去还不错，就来试下。 关于Hexo的使用教程，网上有很多写得不错的，我在学习这个的时候，也参考了许多别人分享的经验，下面就用我的实现过程写下这篇博客，也当作我的第一篇博客了。 安装Nodejs环境Hexo是用Nodejs来生成页面文件的，所以环境中">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/12/11/firstpage/pic1.png">
-<meta property="og:updated_time" content="2017-12-18T05:58:05.243Z">
+<meta property="og:updated_time" content="2017-12-18T06:39:22.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始使用Hexo了">
 <meta name="twitter:description" content="之前在github上试用了一个博客系统，用Jekyll写的，还不错，只是后面一直没有更新内容，最近又重新有了这样的想法，就来关注一下，发现Hexo，看上去还不错，就来试下。 关于Hexo的使用教程，网上有很多写得不错的，我在学习这个的时候，也参考了许多别人分享的经验，下面就用我的实现过程写下这篇博客，也当作我的第一篇博客了。 安装Nodejs环境Hexo是用Nodejs来生成页面文件的，所以环境中">
@@ -99,7 +99,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.3',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -344,14 +344,20 @@
 <p>这里应该可以看到图片的<br><img src="/2017/12/11/firstpage/pic1.png" title="这里是图片的注释"></p>
 <h2 id="修改页面主题"><a href="#修改页面主题" class="headerlink" title="修改页面主题"></a>修改页面主题</h2><p>如果觉得默认的主题不够有特色，可以更换其它主题，比如<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT</a>，在站点目录下可以通过<code>git</code>命令直接下载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
 <p>下载好NexT主题后，可以在配置文件<code>_config.yml</code>中修改主题配置，将默认的<code>landscape</code>改为<code>next</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure></p>
-<p>NexT提供了三种不同的主题风格<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br></pre></td></tr></table></figure></p>
+<p>NexT提供了三种不同的主题风格，可以在其主配置文件<code>themes\next\_config.yml</code>中进行修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>Muse 默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白</li>
 <li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
 <li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+<li>Gemini - 我下载的版本中出现了第四种，测试后发现，和Pisces类似，只是稍宽一点，应该是为了适应宽屏的效果</li>
 </ul>
 <p>可以在NexT主页上看到这三种不同的风格，也可以修改之后直接查看网页效果，NexT详细的配置项可参考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">官网文档</a></p>
 <p>可以通过修改配置文件<code>_config.yml</code>中的其它配置项，如<code>title</code>,<code>author</code>,<code>language</code>等来实现修改整个站点的相关信息</p>
+<h2 id="发布到Github"><a href="#发布到Github" class="headerlink" title="发布到Github"></a>发布到Github</h2><p>在github发布网页可以参考<a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>，在github中创建一个<code>&lt;youraccount&gt;.github.io</code>的repository</p>
+<p>使用Hexo提交到git需要安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>当前电脑之前已经通过git访问过github，有github登录信息，可以直接登录，在<code>_config.yml</code>中配置<code>deploy</code>信息即可，当然也可以发布到其它可以接受静态页面的服务器上，具体<code>deploy</code>配置信息详见<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="noopener">官网</a>，当前配置信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/zhouf/zhouf.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>完成上述操作后，重新生成页面后就可以发布页面到github了，命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>等到上传完成了，就可以在 <a href="https://zhouf.github.io" target="_blank" rel="noopener">https://zhouf.github.io</a> 查看写好的文档了</p>
 
       
     </div>
@@ -372,22 +378,6 @@
       
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/12/11/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
       
 
       
@@ -461,7 +451,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -500,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Nodejs环境"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;Nodejs&#x73AF;&#x5883;" class="headerlink" title="&#x5B89;&#x88C5;Nodejs&#x73AF;&#x5883;"></a>&#x5B89;&#x88C5;Nodejs&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Git环境"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;Git&#x73AF;&#x5883;" class="headerlink" title="&#x5B89;&#x88C5;Git&#x73AF;&#x5883;"></a>&#x5B89;&#x88C5;Git&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始写一篇自己的博客"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5F00;&#x59CB;&#x5199;&#x4E00;&#x7BC7;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;" class="headerlink" title="&#x5F00;&#x59CB;&#x5199;&#x4E00;&#x7BC7;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;"></a>&#x5F00;&#x59CB;&#x5199;&#x4E00;&#x7BC7;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源文件处理"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5904;&#x7406;" class="headerlink" title="&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5904;&#x7406;"></a>&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5904;&#x7406;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改页面主题"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;&#x9875;&#x9762;&#x4E3B;&#x9898;" class="headerlink" title="&#x4FEE;&#x6539;&#x9875;&#x9762;&#x4E3B;&#x9898;"></a>&#x4FEE;&#x6539;&#x9875;&#x9762;&#x4E3B;&#x9898;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Nodejs环境"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;Nodejs&#x73AF;&#x5883;" class="headerlink" title="&#x5B89;&#x88C5;Nodejs&#x73AF;&#x5883;"></a>&#x5B89;&#x88C5;Nodejs&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Git环境"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;Git&#x73AF;&#x5883;" class="headerlink" title="&#x5B89;&#x88C5;Git&#x73AF;&#x5883;"></a>&#x5B89;&#x88C5;Git&#x73AF;&#x5883;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始写一篇自己的博客"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5F00;&#x59CB;&#x5199;&#x4E00;&#x7BC7;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;" class="headerlink" title="&#x5F00;&#x59CB;&#x5199;&#x4E00;&#x7BC7;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;"></a>&#x5F00;&#x59CB;&#x5199;&#x4E00;&#x7BC7;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源文件处理"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5904;&#x7406;" class="headerlink" title="&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5904;&#x7406;"></a>&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5904;&#x7406;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改页面主题"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;&#x9875;&#x9762;&#x4E3B;&#x9898;" class="headerlink" title="&#x4FEE;&#x6539;&#x9875;&#x9762;&#x4E3B;&#x9898;"></a>&#x4FEE;&#x6539;&#x9875;&#x9762;&#x4E3B;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布到Github"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x53D1;&#x5E03;&#x5230;Github" class="headerlink" title="&#x53D1;&#x5E03;&#x5230;Github"></a>&#x53D1;&#x5E03;&#x5230;Github</span></a></li></ol></div>
             
 
           </div>
@@ -538,7 +528,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
 
 
 
