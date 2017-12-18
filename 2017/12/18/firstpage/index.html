@@ -87,7 +87,7 @@
 <meta property="og:description" content="之前在github上试用了一个博客系统，用Jekyll写的，还不错，只是后面一直没有更新内容，最近又重新有了这样的想法，就来关注一下，发现Hexo，看上去还不错，就来试下。 关于Hexo的使用教程，网上有很多写得不错的，我在学习这个的时候，也参考了许多别人分享的经验，下面就用我的实现过程写下这篇博客，也当作我的第一篇博客了。 安装Nodejs环境Hexo是用Nodejs来生成页面文件的，所以环境中">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/12/18/firstpage/pic1.png">
-<meta property="og:updated_time" content="2017-12-18T06:44:46.636Z">
+<meta property="og:updated_time" content="2017-12-18T06:49:23.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始使用Hexo了">
 <meta name="twitter:description" content="之前在github上试用了一个博客系统，用Jekyll写的，还不错，只是后面一直没有更新内容，最近又重新有了这样的想法，就来关注一下，发现Hexo，看上去还不错，就来试下。 关于Hexo的使用教程，网上有很多写得不错的，我在学习这个的时候，也参考了许多别人分享的经验，下面就用我的实现过程写下这篇博客，也当作我的第一篇博客了。 安装Nodejs环境Hexo是用Nodejs来生成页面文件的，所以环境中">
@@ -340,8 +340,8 @@
 <p>之后在使用<code>hexo new</code>创建新的文档时，会在<code>source\_posts\</code>自动创建一个同名的目录，把相应的资源图片或文件放入到该目录即可。</p>
 <p>在写这篇文档时还没有开启，所以没有同名目录，手动创建一个就好了。把图片文件<code>pic1.png</code>放入，在页面中写入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![这里是图片的注释](&apos;firstpage/pic1.png&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>这是Markdown插入图片的语法，看上去没有什么问题，可在浏览器页面里看不到图片，如果希望Hexo生成页面时能正确处理这样描述的图片资源，需要安装一个<code>hexo-asset-image</code>插件，在博客根目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure></p>
-<p>之后再用<code>hexo g</code>就可以正确生成图片路径了，不过Hexo官网推荐的使用标签插件而不是Markdown<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img pic1.png 这里是图片的注释 %&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里应该可以看到图片的<br><img src="/2017/12/18/firstpage/pic1.png" title="这里是图片的注释"></p>
+<p>之后再用<code>hexo g</code>就可以正确生成图片路径了，不过Hexo官网推荐的使用标签插件而不是Markdown<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img pic1.png 这里是一张图片哟 %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里应该可以看到图片的<br><img src="/2017/12/18/firstpage/pic1.png" title="这里是一张图片哟"></p>
 <h2 id="修改页面主题"><a href="#修改页面主题" class="headerlink" title="修改页面主题"></a>修改页面主题</h2><p>如果觉得默认的主题不够有特色，可以更换其它主题，比如<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT</a>，在站点目录下可以通过<code>git</code>命令直接下载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
 <p>下载好NexT主题后，可以在配置文件<code>_config.yml</code>中修改主题配置，将默认的<code>landscape</code>改为<code>next</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure></p>
 <p>NexT提供了三种不同的主题风格，可以在其主配置文件<code>themes\next\_config.yml</code>中进行修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br></pre></td></tr></table></figure></p>
