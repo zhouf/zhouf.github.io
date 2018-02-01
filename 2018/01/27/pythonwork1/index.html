@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在程序员眼里，见不得不断重复的劳动，恨不得把每天的吃饭睡觉都交给CPU去完成。程序员想偷懒，所以要和计算机进行“亲切友好”的交流，让它能明白要做的事情，这样才能把我们从繁重的劳动中解放出来，要不怎么说懒是推动生产力发展的源动力呢:D 前言今天的故事源于一个办公场景，有一个Excel表需要核对，表中数据有“课程名”，“教师姓名”，“课程编号”，根据课程编号可以计算出来一个内网下载教学大纲的一个链接，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用python完成自动化任务">
+<meta property="og:url" content="http://yoursite.com/2018/01/27/pythonwork1/index.html">
+<meta property="og:site_name" content="丰戈的一亩三分地">
+<meta property="og:description" content="在程序员眼里，见不得不断重复的劳动，恨不得把每天的吃饭睡觉都交给CPU去完成。程序员想偷懒，所以要和计算机进行“亲切友好”的交流，让它能明白要做的事情，这样才能把我们从繁重的劳动中解放出来，要不怎么说懒是推动生产力发展的源动力呢:D 前言今天的故事源于一个办公场景，有一个Excel表需要核对，表中数据有“课程名”，“教师姓名”，“课程编号”，根据课程编号可以计算出来一个内网下载教学大纲的一个链接，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-01T01:54:05.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用python完成自动化任务">
+<meta name="twitter:description" content="在程序员眼里，见不得不断重复的劳动，恨不得把每天的吃饭睡觉都交给CPU去完成。程序员想偷懒，所以要和计算机进行“亲切友好”的交流，让它能明白要做的事情，这样才能把我们从繁重的劳动中解放出来，要不怎么说懒是推动生产力发展的源动力呢:D 前言今天的故事源于一个办公场景，有一个Excel表需要核对，表中数据有“课程名”，“教师姓名”，“课程编号”，根据课程编号可以计算出来一个内网下载教学大纲的一个链接，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/27/pythonwork1/"/>
+
+
+
+
+
+  <title>用python完成自动化任务 | 丰戈的一亩三分地</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丰戈的一亩三分地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/27/pythonwork1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhouf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丰戈的一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用python完成自动化任务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-27T09:01:35+08:00">
+                2018-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在程序员眼里，见不得不断重复的劳动，恨不得把每天的吃饭睡觉都交给CPU去完成。程序员想偷懒，所以要和计算机进行“亲切友好”的交流，让它能明白要做的事情，这样才能把我们从繁重的劳动中解放出来，要不怎么说懒是推动生产力发展的源动力呢:D</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天的故事源于一个办公场景，有一个Excel表需要核对，表中数据有“课程名”，“教师姓名”，“课程编号”，根据课程编号可以计算出来一个内网下载教学大纲的一个链接，然后检查一下哪些课程没有提交教学大纲，通知相应的老师。</p>
+<p>会一点Excel的可能会想到用函数生成链接，然后直接点击链接进行下载，可是下载的文件是以课程编号命名的，还需要写一个根据“课程名”和“教师姓名”进行文件重命名的函数操作，一个50条左右记录的表，手工操作差不多得个把小时吧。看到美好的青春年华被这些繁琐的事务所吞噬，实在忍不住了，看不下去了，看不下去了，看不下去了。于是乎，就有了下面的故事</p>
+<p>做个程序吧，这样的任务，应该是很适合用一小段程序来完成。那就试试python吧，至于VBA，后面有时间再弄了，不是说python很开发很快么，那就用这个案例来小试一下。</p>
+<h1 id="整理下思路"><a href="#整理下思路" class="headerlink" title="整理下思路"></a>整理下思路</h1><ul>
+<li>在python里操作Excel，引入了<code>win32com.client</code>库</li>
+<li>遍历Excel工作表，获取行记录</li>
+<li>提取其中的关键信息，生成下载链接</li>
+<li>下载文件，并按中文信息重命名</li>
+<li>下载到Excel文件所在的目录中，放入<code>out\&lt;学期&gt;\</code>子目录</li>
+<li>根据下载的情况，在表格中做标记</li>
+</ul>
+<p>程序功能简单，没有做界面，通过命令行参数传入Excel文件，这种操作方式对于办公室工作的人员来说，可能不太友好。写个操作说明吧，用几次就会了，比单调的重复劳动应该还是更有效率的。</p>
+<h1 id="开工"><a href="#开工" class="headerlink" title="开工"></a>开工</h1><p>程序需要操作Excel，需要创建目录，需要解析命令行参数，需要下载文件，引入包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import urllib3</span><br><span class="line">import os</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">from win32com.client import Dispatch</span><br></pre></td></tr></table></figure></p>
+<p><em>主程序结构</em><br>通过命令行参数获取当前操作的Excel文件，并提取出Excel文件所在的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if len(sys.argv)&lt;2:</span><br><span class="line">    print(&quot;参数不足，退出&quot;)</span><br><span class="line">    sys.exit(0)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">xlsFile = sys.argv[1]</span><br><span class="line">workFolder = os.path.dirname(sys.argv[1])</span><br><span class="line"></span><br><span class="line">print(&quot;参数文件：&quot; + xlsFile)</span><br></pre></td></tr></table></figure></p>
+<p>Excel文件来源于系统导出，数据结构信息相对固定，直接提取了<code>sheet1</code>以及相应的列序号，将表中不太重要的两列数据修改为上传标记和链接地址，下面是打开文件进行遍历的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">xlsApp = Dispatch(&quot;Excel.Application&quot;)</span><br><span class="line">xlsBook = xlsApp.Workbooks.Open(xlsFile)</span><br><span class="line">xlsSht = xlsBook.Worksheets(&quot;sheet1&quot;)</span><br><span class="line"></span><br><span class="line">xlsSht.Cells(1,22).Value=&quot;是否上传&quot;</span><br><span class="line">xlsSht.Cells(1,23).Value=&quot;链接地址&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http = urllib3.PoolManager()</span><br><span class="line"></span><br><span class="line">for i in range(2,xlsSht.UsedRange.Rows.Count+1):</span><br><span class="line">    courseName = xlsSht.Cells(i,5).Value</span><br><span class="line">    teacher = xlsSht.Cells(i,6).Value</span><br><span class="line">    courseNum = xlsSht.Cells(i,21).Value</span><br><span class="line">    teacher = teacher.replace(&quot;/&quot;,&quot;_&quot;)</span><br><span class="line">    print(&quot;\n&quot;+str(i)+&quot;,&quot;+courseName+&quot;,&quot;+teacher+&quot;,&quot;+courseNum)</span><br><span class="line"></span><br><span class="line">xlsBook.Save()</span><br><span class="line">xlsApp.Application.Quit()</span><br><span class="line"></span><br><span class="line">print(&quot;运行完毕，OK!&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>先跑一个，看看能否获得数据。对教师名进行了替换处理，多名老师合上的课程，系统中是用<code>/</code>来表示的，而<code>/</code>表示路径信息，如果用教师名作为文件名的一个部分，则需要替换为另外的连接符。接下来完成单个的功能，各个零部件。</p>
+<p><em>生成下载链接</em><br>通过课程编号生成下载链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def genlink(courseNumber):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    通过课程号生成下载链接地址，课程编号格式如(2017-2018-1)-ECC208-20063065-1</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    year = courseNumber[3:5]+courseNumber[8:10]</span><br><span class="line">    link = &quot;http://192.168.12.39/kcjg&quot;+year+&quot;/JG&quot;+courseNumber+&quot;.doc&quot;</span><br><span class="line">    return link</span><br></pre></td></tr></table></figure></p>
+<p><em>生成中文文件名</em><br>通过必要信息生成下载后的文件名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def genfilename(courseName,teacher,courseNum):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    通过课程名，教师名，课程号生成下载后的文件名，按《out/学期/文件名.doc》存放</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    str = &quot;/out/&quot; + courseNum[1:12] + &quot;/&quot; + courseName</span><br><span class="line">    str = str + &quot;_&quot; + teacher + courseNum[courseNum.rfind(&quot;-&quot;):] + &quot;_&quot; + courseNum[1:12] + &quot;.doc&quot;</span><br><span class="line">    return str</span><br></pre></td></tr></table></figure></p>
+<p><em>创建目录</em><br>准备好用于存放下载文件的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def prepareFolder(file):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    这是检查目录是否存在，如果不存在就创建</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    folder = os.path.dirname(file)</span><br><span class="line">    if not os.path.exists(folder):</span><br><span class="line">        print(&quot;创建目录：&quot; + folder)</span><br><span class="line">        os.makedirs(folder)</span><br><span class="line">    </span><br><span class="line">    return folder</span><br></pre></td></tr></table></figure></p>
+<p><em>下载文件</em><br>调用python库进行文件下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def downfile(cname,teacher,cnum,url):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    下载文件</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    ret = True</span><br><span class="line">    response = http.request(&apos;GET&apos;, url)</span><br><span class="line">    </span><br><span class="line">    if response.status==200:</span><br><span class="line">        filename = workFolder + genfilename(cname,teacher,cnum)</span><br><span class="line">        prepareFolder(filename)</span><br><span class="line">        with open(filename, &apos;wb&apos;) as f:</span><br><span class="line">            f.write(response.data)</span><br><span class="line">            </span><br><span class="line">        print(&quot;保存文件：&quot; + filename)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;未上传&quot;)</span><br><span class="line">        ret = False</span><br><span class="line">        </span><br><span class="line">    response.release_conn()</span><br><span class="line">    return ret</span><br></pre></td></tr></table></figure></p>
+<p>下载文件方法里，<code>url</code>是可以通过<code>cnum</code>计算出来的，因为在主程序结构中需要保存链接到Excel单元格，既然已经生成了，就作为参数传入好了，不用再重新生成一次，程序员的强迫症得到了体现:D ，美中不足是多了个参数</p>
+<p><em>改写主程序方法</em><br>修改Excel行遍历，将定义好的各个方法放入到主程序结构中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">for i in range(2,xlsSht.UsedRange.Rows.Count+1):</span><br><span class="line">    courseName = xlsSht.Cells(i,5).Value</span><br><span class="line">    teacher = xlsSht.Cells(i,6).Value</span><br><span class="line">    courseNum = xlsSht.Cells(i,21).Value</span><br><span class="line">    teacher = teacher.replace(&quot;/&quot;,&quot;_&quot;)</span><br><span class="line">    print(&quot;\n&quot;+str(i)+&quot;,&quot;+courseName+&quot;,&quot;+teacher+&quot;,&quot;+courseNum)</span><br><span class="line">    </span><br><span class="line">    link = genlink(courseNum)</span><br><span class="line">    print(&quot;下载路径：&quot; + link)</span><br><span class="line">    stat = downfile(courseName,teacher,courseNum,link)</span><br><span class="line">    if not stat:</span><br><span class="line">        xlsSht.Cells(i,22).Value=&quot;未上传&quot;</span><br><span class="line">    else:</span><br><span class="line">        xlsSht.Cells(i,22).Value=&quot;&quot;</span><br><span class="line">    </span><br><span class="line">    xlsSht.Cells(i,23).Value=link</span><br></pre></td></tr></table></figure></p>
+<h1 id="完工"><a href="#完工" class="headerlink" title="完工"></a>完工</h1><p>程序写好了，放在python环境下跑，那节奏才叫个爽快，这才是现代化办公正确的打开方式嘛。需要完成这项任务的时候，就召唤出这个小精灵吧，剩下的五十多分钟就可以聊聊人生，谈谈理想啦（开个玩笑）。</p>
+<p>不足之处，需要在用户电脑上安装python环境，需要用他们可能并不熟悉的方式召唤神龙，后面再考虑有没有使用起来更简单的方式，比如VBA…</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/21/Centos-redis/" rel="next" title="在CentOS下安装redis记录">
+                <i class="fa fa-chevron-left"></i> 在CentOS下安装redis记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/01/withvba1/" rel="prev" title="改用VBA完成自动化任务">
+                改用VBA完成自动化任务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="zhouf" />
+            
+              <p class="site-author-name" itemprop="name">zhouf</p>
+              <p class="site-description motion-element" itemprop="description">这是我的个人博客空间，欢迎大家的光临</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                之前的博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.blogjava.net/zhouf" title="蒧经阁" target="_blank">蒧经阁</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zhouft.blog.sohu.com/" title="好地方" target="_blank">好地方</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#整理下思路"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6574;&#x7406;&#x4E0B;&#x601D;&#x8DEF;" class="headerlink" title="&#x6574;&#x7406;&#x4E0B;&#x601D;&#x8DEF;"></a>&#x6574;&#x7406;&#x4E0B;&#x601D;&#x8DEF;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开工"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5F00;&#x5DE5;" class="headerlink" title="&#x5F00;&#x5DE5;"></a>&#x5F00;&#x5DE5;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完工"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5B8C;&#x5DE5;" class="headerlink" title="&#x5B8C;&#x5DE5;"></a>&#x5B8C;&#x5DE5;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhouf</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

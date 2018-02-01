@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="之前写了一篇用python来完成自动化任务的文档，后面试着用VBA来改写了一遍，VB这样的语法许久没用了，上学的时候考试完就没太用过，写过一些VBA，也不经常用，所以改起来还是没有那么的流畅。想到用VBA来改写是希望让用户操作起来更为方便一点，添加一个自定义工具，点个按钮就召唤出来了，这样的操作应该没有太多的门槛吧。 前言程序的功能和思路基本上和上一篇文档一样，只是添加了一些处理让程序适应性更强，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="改用VBA完成自动化任务">
+<meta property="og:url" content="http://yoursite.com/2018/02/01/withvba1/index.html">
+<meta property="og:site_name" content="丰戈的一亩三分地">
+<meta property="og:description" content="之前写了一篇用python来完成自动化任务的文档，后面试着用VBA来改写了一遍，VB这样的语法许久没用了，上学的时候考试完就没太用过，写过一些VBA，也不经常用，所以改起来还是没有那么的流畅。想到用VBA来改写是希望让用户操作起来更为方便一点，添加一个自定义工具，点个按钮就召唤出来了，这样的操作应该没有太多的门槛吧。 前言程序的功能和思路基本上和上一篇文档一样，只是添加了一些处理让程序适应性更强，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/02/01/withvba1/pic1.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/01/withvba1/pic2.png">
+<meta property="og:updated_time" content="2018-02-01T03:38:20.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="改用VBA完成自动化任务">
+<meta name="twitter:description" content="之前写了一篇用python来完成自动化任务的文档，后面试着用VBA来改写了一遍，VB这样的语法许久没用了，上学的时候考试完就没太用过，写过一些VBA，也不经常用，所以改起来还是没有那么的流畅。想到用VBA来改写是希望让用户操作起来更为方便一点，添加一个自定义工具，点个按钮就召唤出来了，这样的操作应该没有太多的门槛吧。 前言程序的功能和思路基本上和上一篇文档一样，只是添加了一些处理让程序适应性更强，">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/01/withvba1/pic1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/01/withvba1/"/>
+
+
+
+
+
+  <title>改用VBA完成自动化任务 | 丰戈的一亩三分地</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丰戈的一亩三分地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/withvba1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhouf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丰戈的一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">改用VBA完成自动化任务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T10:09:09+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前写了一篇用python来完成自动化任务的文档，后面试着用VBA来改写了一遍，VB这样的语法许久没用了，上学的时候考试完就没太用过，写过一些VBA，也不经常用，所以改起来还是没有那么的流畅。想到用VBA来改写是希望让用户操作起来更为方便一点，添加一个自定义工具，点个按钮就召唤出来了，这样的操作应该没有太多的门槛吧。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>程序的功能和思路基本上和上一篇文档一样，只是添加了一些处理让程序适应性更强，比如可以适应不同的列号，也就是说关键数据的列位置可以不固定，表格前面允许有空行，让程序去略过。大致的步骤也是遍历表格，计算出数据，进行下载，保存，更新表格数据，提示是否需要查看下载的目录，方便用户下载完成后直接打开，不用再通过路径去找下载文件。</p>
+<h1 id="程序部分"><a href="#程序部分" class="headerlink" title="程序部分"></a>程序部分</h1><p>首先是主体程序结构，也是VBA调用入口，本来计划是用英文字符来命名的，从用户的角度出发，还是就用中文了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">Sub 检查教纲提交()</span><br><span class="line">    </span><br><span class="line">    Set book = Application.ActiveWorkbook</span><br><span class="line">    Set sht = book.ActiveSheet</span><br><span class="line">    </span><br><span class="line">    Dim allrows As Integer, allcolumns As Integer</span><br><span class="line">    Dim downcnt As Integer, errcnt As Integer</span><br><span class="line">    Dim course As String, teacher As String, courseNumber As String, folder As String</span><br><span class="line">    Dim courseIndex As Integer, teacherIndex As Integer, courseNumberIndex As Integer, datarow As Integer</span><br><span class="line">    Dim check As Boolean</span><br><span class="line">    </span><br><span class="line">    allrows = sht.UsedRange.Rows.Count</span><br><span class="line">    allcolumns = sht.UsedRange.Columns.Count</span><br><span class="line">    &apos;rows = UsedRange.rows.Count</span><br><span class="line">    &apos;allrows = 5</span><br><span class="line">    </span><br><span class="line">    &apos;判断工作表并准备数据列</span><br><span class="line">    check = prepare(allrows, allcolumns, courseIndex, teacherIndex, courseNumberIndex, datarow)</span><br><span class="line">    </span><br><span class="line">    If check = False Then</span><br><span class="line">        &apos;如果工作表不符合条件</span><br><span class="line">        MsgBox &quot;当前工作表中不包含“课程名称”“教师姓名”“选课课号”等数据列，无法完成当前操作&quot;</span><br><span class="line">        Exit Sub</span><br><span class="line">    End If</span><br><span class="line">    </span><br><span class="line">    Application.ScreenUpdating = False</span><br><span class="line">    &apos;准备目录</span><br><span class="line">    </span><br><span class="line">    folder = book.Path &amp; &quot;\out&quot;</span><br><span class="line">    checkAndCreateFolder (folder)</span><br><span class="line">    </span><br><span class="line">    &apos;循环处理</span><br><span class="line">    For i = datarow To allrows</span><br><span class="line">        course = Cells(i, courseIndex).Value</span><br><span class="line">        teacher = Cells(i, teacherIndex).Value</span><br><span class="line">        courseNumber = Cells(i, courseNumberIndex).Value</span><br><span class="line">        </span><br><span class="line">        &apos;If course = &quot;课程名称&quot; Then</span><br><span class="line">        &apos;    Cells(i, 22).Value = &quot;是否上传&quot;</span><br><span class="line">        &apos;    Cells(i, 23).Value = &quot;链接地址&quot;</span><br><span class="line">        &apos;End If</span><br><span class="line">        </span><br><span class="line">        If Len(course) &gt; 0 And course &lt;&gt; &quot;课程名称&quot; Then</span><br><span class="line">            Dim link As String</span><br><span class="line">            </span><br><span class="line">            If InStr(1, courseNumber, &quot;000000&quot;) = 0 Then</span><br><span class="line">                &apos;排除自动生成</span><br><span class="line">                link = getlink(courseNumber)</span><br><span class="line">                teacher = Replace(teacher, &quot;/&quot;, &quot;-&quot;)</span><br><span class="line">                </span><br><span class="line">                Debug.Print course &amp; teacher &amp; courseNumber</span><br><span class="line">                Debug.Print link</span><br><span class="line">                </span><br><span class="line">                Cells(i, courseNumberIndex + 2).Value = link</span><br><span class="line">                ret = downAndSave(course, teacher, courseNumber, link, folder)</span><br><span class="line">                Debug.Print &quot;下载操作结果：&quot; &amp; ret</span><br><span class="line">                </span><br><span class="line">                If ret = False Then</span><br><span class="line">                    &apos;下载失败</span><br><span class="line">                    Cells(i, courseNumberIndex + 1).Value = &quot;未上传&quot;</span><br><span class="line">                    errcnt = errcnt + 1</span><br><span class="line">                Else</span><br><span class="line">                    downcnt = downcnt + 1</span><br><span class="line">                End If</span><br><span class="line"></span><br><span class="line">            End If</span><br><span class="line"></span><br><span class="line">            Debug.Print &quot;----------------------------------------&quot;</span><br><span class="line">        End If</span><br><span class="line">        </span><br><span class="line">    Next</span><br><span class="line">    </span><br><span class="line">    Application.ScreenUpdating = True</span><br><span class="line">    </span><br><span class="line">    Dim msg As String</span><br><span class="line">    msg = &quot;执行完毕，共下载文件&quot; &amp; downcnt &amp; &quot;个，&quot; &amp; errcnt &amp; &quot;个未上传&quot; &amp; Chr(13) &amp; &quot;文件保存到：&quot; &amp; folder</span><br><span class="line">    </span><br><span class="line">    Debug.Print msg</span><br><span class="line">    &apos;MsgBox msg</span><br><span class="line"></span><br><span class="line">    openfolder book.Path &amp; &quot;\out&quot;, msg</span><br><span class="line">    &apos;------------------------------------------------------------</span><br><span class="line">    </span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>其中有很多功能的拆分，用函数和过程实现的，接下来就一一解释一下（排名不分先后）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">Function prepare(ByVal allrows As Integer, ByVal allcols As Integer, ByRef courseCol As Integer, ByRef teacherCol As Integer, ByRef cnumCol As Integer, ByRef datarow As Integer)</span><br><span class="line">    &apos;准备运行程序，查找当前表格中的符合条件的数据列，如果当前表格不符合，则返回False</span><br><span class="line">    &apos;如果符合条件，则获取“课程名称”“教师姓名”“选课课号”所在列序号，并标记下一行为数据行</span><br><span class="line">    </span><br><span class="line">    Dim checkok As Boolean</span><br><span class="line">    </span><br><span class="line">    Debug.Print allrows, allcols, courseCol, teacherCol, cnumCol, datarow</span><br><span class="line">    </span><br><span class="line">    For r = 1 To allrows</span><br><span class="line">        For c = 1 To allcols</span><br><span class="line">            </span><br><span class="line">            Debug.Print Cells(r, c).Value</span><br><span class="line">            </span><br><span class="line">            If Cells(r, c).Value = &quot;课程名称&quot; Then</span><br><span class="line">                courseCol = c</span><br><span class="line">            ElseIf Cells(r, c).Value = &quot;教师姓名&quot; Then</span><br><span class="line">                teacherCol = c</span><br><span class="line">            ElseIf Cells(r, c).Value = &quot;选课课号&quot; Then</span><br><span class="line">                cnumCol = c</span><br><span class="line">            End If</span><br><span class="line">        </span><br><span class="line">            If courseCol * teacherCol * cnumCol &lt;&gt; 0 Then</span><br><span class="line">                &apos;找到了所需要的数据列</span><br><span class="line">                checkok = True</span><br><span class="line">                datarow = r</span><br><span class="line">                Exit For</span><br><span class="line">            End If</span><br><span class="line">            </span><br><span class="line">        Next c</span><br><span class="line">        </span><br><span class="line">        If checkok = True Then Exit For</span><br><span class="line">        </span><br><span class="line">    Next r</span><br><span class="line">    </span><br><span class="line">    If checkok = True Then</span><br><span class="line">        &apos;如果符合操作条件，添加新的数据列</span><br><span class="line">        Cells(datarow, cnumCol + 1).Select</span><br><span class="line">        Selection.EntireColumn.Insert , CopyOrigin:=xlFormatFromLeftOrAbove</span><br><span class="line">        Selection.EntireColumn.Insert , CopyOrigin:=xlFormatFromLeftOrAbove</span><br><span class="line">        Cells(datarow, cnumCol + 1).Value = &quot;是否上传&quot;</span><br><span class="line">        Cells(datarow, cnumCol + 2).Value = &quot;链接地址&quot;</span><br><span class="line">        datarow = datarow + 1</span><br><span class="line">    End If</span><br><span class="line">    </span><br><span class="line">    Debug.Print allrows, allcols, courseCol, teacherCol, cnumCol, datarow</span><br><span class="line">    </span><br><span class="line">    prepare = checkok</span><br><span class="line"></span><br><span class="line">End Function</span><br></pre></td></tr></table></figure>
+<p>在此方法中检查数据表是否包含操作所需的数据列，如果满足条件，添加操作记录列“是否上传”，“链接地址”，需要考虑带回数据，在参数里添加了很多的引用。接下来是通过课程号生成下载链接地址的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Function getlink(curNumber As String)</span><br><span class="line">    &apos;通过课程号生成下载链接地址</span><br><span class="line">    Dim year As String</span><br><span class="line">    year = Mid(curNumber, 4, 2) &amp; Mid(curNumber, 9, 2)</span><br><span class="line">    getlink = &quot;http://192.168.12.39/kcjg&quot; &amp; year &amp; &quot;/JG&quot; &amp; curNumber &amp; &quot;.doc&quot;</span><br><span class="line"></span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>这个方法比较简单，主要是对字串的处理。接下来是下载文件的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Function downAndSave(ByVal course As String, ByVal teacher As String, ByVal cnumber As String, ByVal url As String, ByVal folder As String)</span><br><span class="line">&apos; 下载并保存文件</span><br><span class="line">    Dim fileName As String</span><br><span class="line">    On Error GoTo MyErr</span><br><span class="line">    </span><br><span class="line">    folder = folder &amp; &quot;/&quot; &amp; Mid(cnumber, 2, 11)</span><br><span class="line">    checkAndCreateFolder (folder)</span><br><span class="line">    </span><br><span class="line">    fileName = folder &amp; &quot;/&quot; &amp; course &amp; &quot;_&quot; &amp; teacher &amp; &quot;_&quot; &amp; Right(cnumber, Len(cnumber) - InStrRev(cnumber, &quot;-&quot;)) &amp; &quot;.doc&quot;</span><br><span class="line">    &apos;fileName = book.Path &amp; fileName</span><br><span class="line">    Debug.Print fileName</span><br><span class="line">    </span><br><span class="line">    Dim xmlhttp As Object</span><br><span class="line">    Set xmlhttp = CreateObject(&quot;Microsoft.XMLHTTP&quot;)</span><br><span class="line">    xmlhttp.Open &quot;GET&quot;, url, False</span><br><span class="line">    xmlhttp.Send</span><br><span class="line"></span><br><span class="line">    Do While xmlhttp.readystate &lt;&gt; 4 &apos;等待完成</span><br><span class="line">        DoEvents</span><br><span class="line">    Loop</span><br><span class="line">    </span><br><span class="line">    If xmlhttp.Status = 404 Then</span><br><span class="line">        &apos;如果资源不存在</span><br><span class="line">        GoTo MyErr</span><br><span class="line">    End If</span><br><span class="line">    </span><br><span class="line">    Set outfile = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">    outfile.Type = 1</span><br><span class="line">    outfile.Open</span><br><span class="line">    outfile.write xmlhttp.Responsebody</span><br><span class="line">    outfile.savetofile fileName, 2    &apos;本地保存文件名</span><br><span class="line">    outfile.Close</span><br><span class="line"></span><br><span class="line">    downAndSave = True</span><br><span class="line">    Exit Function</span><br><span class="line">    </span><br><span class="line">MyErr:</span><br><span class="line">    Debug.Print &quot;下载出错&quot;</span><br><span class="line">    downAndSave = False</span><br><span class="line">    </span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>传入操作所需要参数，创建相应的保存目录。这个方法如果服务器故障无响应，程序会有长时间的停顿，目前暂未处理这种情况，未有添加url可访问检测。下面是处理目录的操作，检查目录是否存在。系统会在当前xls文件所在目录下创建“out”目录，在其中创建“学期”目录，都是由此方法完成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Function checkAndCreateFolder(ByVal folder As String)</span><br><span class="line">    &apos;检查目录是否存在，如果不存在，则创建</span><br><span class="line">    On Error GoTo er</span><br><span class="line">    </span><br><span class="line">    If Dir(folder, vbDirectory) = Empty Then</span><br><span class="line">        MkDir folder</span><br><span class="line">    End If</span><br><span class="line">    </span><br><span class="line">    Debug.Print &quot;创建目录&quot; &amp; folder</span><br><span class="line">    </span><br><span class="line">    Exit Function</span><br><span class="line">er:</span><br><span class="line">    Debug.Print folder &amp; &quot;目录已经存在&quot;</span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>程序执行完成后，下载完所有的文档，并在表格中做好标记，则提示是否需要打开目录，打开目录调用如下过程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Private Sub openfolder(ByVal folder As String, msg As String)</span><br><span class="line">    &apos;是否打开目录</span><br><span class="line">    ans = MsgBox(Prompt:=msg, Buttons:=vbYesNo, Title:=&quot;是否查看目录&quot;)</span><br><span class="line">    If ans = 6 Then</span><br><span class="line">        &apos;选择yes</span><br><span class="line">        mOpen = Shell(&quot;Explorer.exe &quot; &amp; folder, vbNormalFocus)</span><br><span class="line">    End If</span><br><span class="line"></span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<h1 id="开发小记"><a href="#开发小记" class="headerlink" title="开发小记"></a>开发小记</h1><p>当前程序功能简单，未做界面，目前可以通过宏直接调用，需要通过设置打开【开发工具】，Function和Private的过程不会出现在调用列表中，所以剩下的那个调用过程就用了中文名。</p>
+<p>另一种方法是不用打开【开发工具】选项卡，在【选项】中【自定义功能区】里将宏命令添加到功能区中，下次直接点击功能区按钮执行。</p>
+<p>还需要注意一个问题就是宏保存的位置，通常在XLS文件中写VBA多是保存在当前文件中，换一个文件可能就无法调用所写的功能了，如果希望其它的XLS文件也能调用到，建议把宏写在【个人宏工作簿】如下图<br><img src="/2018/02/01/withvba1/pic1.png" title="选择宏保存位置"></p>
+<p>可以先录制一个简单的宏，然后编辑，在工程视图里就可以看到<code>PERSONAL.XLSB</code>的模块了，如下图<br><img src="/2018/02/01/withvba1/pic2.png" title="个人工作簿宏模块"><br>保存在当前模块下的宏可以用在所有打开的文档中，我们可以为不同的功能创建不同的模块，上面的代码可以放入此模块中，这样调整后，代码会有所变化，之前在当前工作簿中获取活动工作表，可以用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set sht = ThisWorkbook.ActiveSheet</span><br></pre></td></tr></table></figure></p>
+<p>如果宏放在<code>PERSONAL.XLSB</code>中，上面的代码获取到的活动工作表就是<code>PERSONAL.XLSB</code>中工作表，如果要获取当前打开文档的活动工作表，需要改为如下的写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set book = Application.ActiveWorkbook</span><br><span class="line">Set sht = book.ActiveSheet</span><br></pre></td></tr></table></figure></p>
+<p>这次的内容就到此吧，用VBA还算挺好玩的，几年前帮朋友做了一个数据统计整理的VBA，用起来挺爽快的，只没有写文档。这次也帮忙写了个小程序，点击一个按钮就完成了工作，就像是召唤出了一个小精灵，可爱的小精灵。要解决工作中重复繁琐的问题，VBA还是可以学学的嘛</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/27/pythonwork1/" rel="next" title="用python完成自动化任务">
+                <i class="fa fa-chevron-left"></i> 用python完成自动化任务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="zhouf" />
+            
+              <p class="site-author-name" itemprop="name">zhouf</p>
+              <p class="site-description motion-element" itemprop="description">这是我的个人博客空间，欢迎大家的光临</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                之前的博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.blogjava.net/zhouf" title="蒧经阁" target="_blank">蒧经阁</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zhouft.blog.sohu.com/" title="好地方" target="_blank">好地方</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序部分"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7A0B;&#x5E8F;&#x90E8;&#x5206;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x90E8;&#x5206;"></a>&#x7A0B;&#x5E8F;&#x90E8;&#x5206;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发小记"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5F00;&#x53D1;&#x5C0F;&#x8BB0;" class="headerlink" title="&#x5F00;&#x53D1;&#x5C0F;&#x8BB0;"></a>&#x5F00;&#x53D1;&#x5C0F;&#x8BB0;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhouf</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
