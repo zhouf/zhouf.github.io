@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在办公环境下面，VBA还是挺好玩的，当把一个繁琐的事情改造成一个自动化的过程的时候，就像又练成了一招功夫一般，或是又创造了一个小精灵。接下来又将创建一个小精灵，完成一个特别的任务 前言对于经常用OFFICE的劳动人民来说，邮件合并是一个很能提高效率的功能，如工资条，成绩单等典型的应用。先说明一下今天的场景，有一个教学任务书，发给每个老师，因为每个老师的课程记录数不同，有的老师有一条记录，有的老师有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用VBA进行邮件发送">
+<meta property="og:url" content="http://yoursite.com/2018/02/24/vbamail/index.html">
+<meta property="og:site_name" content="丰戈的一亩三分地">
+<meta property="og:description" content="在办公环境下面，VBA还是挺好玩的，当把一个繁琐的事情改造成一个自动化的过程的时候，就像又练成了一招功夫一般，或是又创造了一个小精灵。接下来又将创建一个小精灵，完成一个特别的任务 前言对于经常用OFFICE的劳动人民来说，邮件合并是一个很能提高效率的功能，如工资条，成绩单等典型的应用。先说明一下今天的场景，有一个教学任务书，发给每个老师，因为每个老师的课程记录数不同，有的老师有一条记录，有的老师有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/02/24/vbamail/mainform.png">
+<meta property="og:updated_time" content="2018-02-24T03:54:07.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用VBA进行邮件发送">
+<meta name="twitter:description" content="在办公环境下面，VBA还是挺好玩的，当把一个繁琐的事情改造成一个自动化的过程的时候，就像又练成了一招功夫一般，或是又创造了一个小精灵。接下来又将创建一个小精灵，完成一个特别的任务 前言对于经常用OFFICE的劳动人民来说，邮件合并是一个很能提高效率的功能，如工资条，成绩单等典型的应用。先说明一下今天的场景，有一个教学任务书，发给每个老师，因为每个老师的课程记录数不同，有的老师有一条记录，有的老师有">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/24/vbamail/mainform.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/24/vbamail/"/>
+
+
+
+
+
+  <title>使用VBA进行邮件发送 | 丰戈的一亩三分地</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丰戈的一亩三分地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/vbamail/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhouf">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丰戈的一亩三分地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用VBA进行邮件发送</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T10:05:20+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在办公环境下面，VBA还是挺好玩的，当把一个繁琐的事情改造成一个自动化的过程的时候，就像又练成了一招功夫一般，或是又创造了一个小精灵。接下来又将创建一个小精灵，完成一个特别的任务</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于经常用OFFICE的劳动人民来说，邮件合并是一个很能提高效率的功能，如工资条，成绩单等典型的应用。先说明一下今天的场景，有一个教学任务书，发给每个老师，因为每个老师的课程记录数不同，有的老师有一条记录，有的老师有多条记录，如果按每条记录给老师们发邮件，那有着多条记录的老师会收到多个邮件，这样做明显不太完美。网上也找了很多的办法，如在进行邮件合并时通过<code>NEXTIF</code>等宏命令来协助处理，一个老师如果有多条记录的情况下，对第一条记录可以很方便的设置，对后面的行操作起来也不是很友好，这个方案还有一个问题，就是任务记录少的老师会有多出来的空行，也不完美。</p>
+<p>后面想了一下，邮件合并的核心思想就是把数据与文档进行关联，自动生成文档或邮件进行发送，现在数据在EXCEL文件里，目标就是邮件发送，那么可以通过数据生成HTML格式的邮件内容进行发送就好了，至于每个老师的任务记录个数，可以通过VBA程序来控制，这样就避免了上述的问题。想好了思路之后，开工:D</p>
+<h1 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h1><p>为了用户操作方式和直观，在VBA中实现了一个界面，用户只需要选择发送数据的工作表和指定教师名所在的列就好，系统会根据不同的教师名发送邮件，每个老师的邮箱信息是单独保存到一个配置文件里的，如果有邮箱信息改变的情况，手动更改一下该文本文件即可，支持同一教师多个邮箱。这样设计省去了在工作表中提取邮箱信息的操作，通常需要发送数据的工作表都不包含邮箱信息的。让程序自动去匹配，没有的给出提示信息，省去了人工操作的步骤。</p>
+<h1 id="完成界面"><a href="#完成界面" class="headerlink" title="完成界面"></a>完成界面</h1><p>在界面中提供邮件主题输入，除数据表格之外的正文部分，工作表选择，姓名列选择，以及操作按钮。程序中使用了两种邮件发送方式，本来是用于测试的，后来就保留了下来，做了一个选择框供用户选择，一种是调用Outlook发送，另一种是调用CDO组件发送。</p>
+<p>界面设计在Visual Basic编辑器是选择<code>插入</code>-&gt;<code>用户窗体</code>即可，实现的界面效果如下图所示</p>
+<img src="/2018/02/24/vbamail/mainform.png" title="操作界面">
+<h1 id="程序模块部分"><a href="#程序模块部分" class="headerlink" title="程序模块部分"></a>程序模块部分</h1><p>在程序模块中定义两个全局变量，一个是当前工作表，另一个是老师的邮箱数据，用一个字典保存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Public book As Workbook</span><br><span class="line">Public mailDict As Object</span><br></pre></td></tr></table></figure></p>
+<p>在程序调用时，先进行数据初始化，从配置文件中加载邮箱数据，然后将当前工作簿的工作表数据传递到界面中，供用户选择<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Sub 发送邮件()</span><br><span class="line"></span><br><span class="line">    &apos;这是一个发送邮件的操作</span><br><span class="line">    Set book = Application.ActiveWorkbook</span><br><span class="line"></span><br><span class="line">    &apos;初始化数据</span><br><span class="line">    Call initdata</span><br><span class="line"></span><br><span class="line">    With MainForm.ComboSheet</span><br><span class="line">        .Clear</span><br><span class="line">        For Each sht In book.Worksheets</span><br><span class="line">             &apos;Debug.Print sht.Name</span><br><span class="line">             .AddItem sht.Name</span><br><span class="line">        Next</span><br><span class="line">    End With</span><br><span class="line"></span><br><span class="line">    MainForm.Show</span><br><span class="line"></span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>初始化数据的过程，从用户目录如<code>C:\Users\lenovo</code>下加载<code>mail.csv</code>配置文件，读入到字典变量中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Private Sub initdata()</span><br><span class="line">    Dim txt As String, teacherName As String, email As String</span><br><span class="line">    Dim cIndex As Integer</span><br><span class="line"></span><br><span class="line">    Set mailDict = CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line"></span><br><span class="line">    &apos;加载用户目录下的mail.csv文件</span><br><span class="line">    Open Environ(&quot;UserProfile&quot;) &amp; &quot;\mails.csv&quot; For Input As #1</span><br><span class="line">    Do While Not EOF(1)</span><br><span class="line">        Line Input #1, txt</span><br><span class="line">        &apos;Debug.Print txt</span><br><span class="line">        cIndex = InStr(1, txt, &quot;,&quot;)</span><br><span class="line">        teacherName = Left(txt, cIndex - 1)</span><br><span class="line">        email = Right(txt, Len(txt) - cIndex)</span><br><span class="line"></span><br><span class="line">        mailDict.Add teacherName, email</span><br><span class="line">    Loop</span><br><span class="line">    Close #1</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>在模块中还有两个发送邮件的方法，这个是在网上找到的，详细代码就不贴了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Public Function fSendEMailCDO(strTo As String, strSubject As String, strBody As String, Optional strAttachment As String = &quot;&quot;, Optional strCC As String = &quot;&quot;, Optional strBCC As String = &quot;&quot;) As Object</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">Public Function SendMail(strTo As String, strSubject As String, strBody As String, Optional strAttachment As String = &quot;&quot;, Optional strCC As String = &quot;&quot;, Optional strBCC As String = &quot;&quot;) As Integer</span><br><span class="line">....</span><br></pre></td></tr></table></figure></p>
+<p>使用CDO方式需要在代码中配置邮件服务器信息，第二个SendMail方法直接调用配置好的Outlook发送邮件，如果调用Outlook发送邮件，需要引用<code>Microseft Outlook *.0 Object Library</code>库。接下来要处理的就是界面里的功能了</p>
+<h1 id="界面功能处理"><a href="#界面功能处理" class="headerlink" title="界面功能处理"></a>界面功能处理</h1><p>选择工作表后，让用户选择教师姓名所在列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Private Sub ComboSheet_Change()</span><br><span class="line">    Debug.Print ComboSheet.Text</span><br><span class="line"></span><br><span class="line">    Debug.Print &quot;index=&quot; &amp; ComboSheet.ListIndex</span><br><span class="line">    Set sht = book.Sheets(ComboSheet.Text)</span><br><span class="line"></span><br><span class="line">    Dim allcolumns As Integer</span><br><span class="line"></span><br><span class="line">    allcolumns = sht.UsedRange.Columns.Count</span><br><span class="line"></span><br><span class="line">    Dim v As String</span><br><span class="line">    Dim l As Integer</span><br><span class="line"></span><br><span class="line">    ComboColumn.Clear</span><br><span class="line"></span><br><span class="line">    For r = 1 To allcolumns</span><br><span class="line">        v = sht.Cells(1, r).Value</span><br><span class="line">        ComboColumn.AddItem v</span><br><span class="line">        l = l + Len(v)</span><br><span class="line">    Next r</span><br><span class="line"></span><br><span class="line">    If l = 0 Then</span><br><span class="line">        MsgBox &quot;所选择工作表&quot; &amp; ComboSheet.Text &amp; &quot;第一行未检测到标题数据&quot;</span><br><span class="line">    End If</span><br><span class="line"></span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<p>主要是点击发送按钮时的操作，在此操作中需要处理以下内容</p>
+<ul>
+<li>检查界面数据的有效性</li>
+<li>检查教师数据，是否能找到匹配的Email</li>
+<li>对合并的教师如“教师A/教师B”需要进行拆分处理</li>
+<li>通过数据生成HTML内容</li>
+<li>进行邮件发送</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&apos;发送按钮</span><br><span class="line">Private Sub SendBtn_Click()</span><br><span class="line"></span><br><span class="line">    &apos;检查页面是否填写完成</span><br><span class="line">    If Len(TextSubject.Text) * Len(TextMail.Text) * Len(ComboSheet.Text) * Len(ComboColumn.Text) = 0 Then</span><br><span class="line">        MsgBox &quot;请填写完整&quot;</span><br><span class="line">        Exit Sub</span><br><span class="line">    End If</span><br><span class="line"></span><br><span class="line">    Set sht = book.Sheets(ComboSheet.Text)</span><br><span class="line"></span><br><span class="line">    Dim allrows As Integer, allcolumns As Integer, teacherIndex As Integer</span><br><span class="line">    Dim teacher As String</span><br><span class="line"></span><br><span class="line">    allrows = sht.UsedRange.Rows.Count</span><br><span class="line">    allcolumns = sht.UsedRange.Columns.Count</span><br><span class="line">    teacherIndex = ComboColumn.ListIndex + 1</span><br><span class="line"></span><br><span class="line">    Dim dic As Object</span><br><span class="line">    Set dic = CreateObject(&quot;Scripting.Dictionary&quot;)</span><br><span class="line"></span><br><span class="line">    For r = 2 To allrows</span><br><span class="line">        teacher = sht.Cells(r, teacherIndex).Value</span><br><span class="line">        Debug.Print teacher</span><br><span class="line"></span><br><span class="line">        &apos;对有/进行连接的多个名字进行分割</span><br><span class="line"></span><br><span class="line">        For Each t In Split(teacher, &quot;/&quot;)</span><br><span class="line"></span><br><span class="line">            If Not dic.exists(t) And t &lt;&gt; &quot;自动生成&quot; Then</span><br><span class="line">                dic.Add t, teacher</span><br><span class="line">            End If</span><br><span class="line">        Next</span><br><span class="line"></span><br><span class="line">    Next</span><br><span class="line"></span><br><span class="line">    Debug.Print &quot;-------------------&quot;</span><br><span class="line"></span><br><span class="line">    For Each t In dic.keys</span><br><span class="line">        Debug.Print t</span><br><span class="line">        If Not mailDict.exists(t) Then</span><br><span class="line">            MsgBox &quot;系统中找不到&quot; &amp; t &amp; &quot;的邮箱信息，请检查是否拼写错误&quot;</span><br><span class="line">            Exit Sub</span><br><span class="line">        End If</span><br><span class="line">    Next</span><br><span class="line"></span><br><span class="line">    Dim tbheader As String</span><br><span class="line"></span><br><span class="line">    tbheader = genTableHeader(sht, allcolumns)</span><br><span class="line"></span><br><span class="line">    &apos;按表格中的教师获取数据</span><br><span class="line">    For Each t In dic.keys</span><br><span class="line">        Dim body As String</span><br><span class="line"></span><br><span class="line">        body = &quot;&lt;html&gt;&lt;h3&gt;&quot; &amp; t &amp; &quot;老师，您好&lt;/h3&gt;&quot; &amp; Chr(13) &amp; Chr(10)</span><br><span class="line">        body = body + &quot;&lt;h3&gt;&quot; &amp; TextMail.Text &amp; &quot;&lt;/h3&gt;&quot; &amp; Chr(13) &amp; Chr(10)</span><br><span class="line">        body = body + &quot;&lt;table border=&apos;1&apos; style=&apos;border-collapse:collapse;&apos; cellpadding=&apos;7&apos;&gt;&quot; &amp; Chr(13) &amp; Chr(10)</span><br><span class="line">        body = body + tbheader &amp; Chr(13) &amp; Chr(10)</span><br><span class="line">        body = body + genTeacherData(sht, allcolumns, allrows, t, teacherIndex)</span><br><span class="line">        body = body + &quot;&lt;/table&gt;&lt;/html&gt;&quot;</span><br><span class="line"></span><br><span class="line">        Dim address As String</span><br><span class="line">        address = mailDict(t)</span><br><span class="line"></span><br><span class="line">        Debug.Print &quot;Mailto:&quot; &amp; address</span><br><span class="line">        Debug.Print &quot;subject:&quot; &amp; TextSubject.Text</span><br><span class="line">        Debug.Print &quot;MailBody:&quot; &amp; body</span><br><span class="line"></span><br><span class="line">        If ckOutlook.Value = True Then</span><br><span class="line">            a = SendMail(address, TextSubject.Text, body)</span><br><span class="line">        Else</span><br><span class="line">            Set a = fSendEMailCDO(address, TextSubject.Text, body)</span><br><span class="line">            Debug.Print &quot;发送结果：&quot; &amp; a</span><br><span class="line">        End If</span><br><span class="line"></span><br><span class="line">    Next</span><br><span class="line"></span><br><span class="line">    MsgBox &quot;完成发邮件&quot; &amp; dic.Count &amp; &quot;封&quot;, vbOKOnly, &quot;发送完毕&quot;</span><br><span class="line">    Unload Me</span><br><span class="line"></span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+<p>下面是几个被调用的函数，用表格的第一行数据生成HTML表头<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Function genTableHeader(ByVal sht As Worksheet, allcols As Integer)</span><br><span class="line">    &apos;用第一行数据生成HTML表头</span><br><span class="line">    Dim html As String</span><br><span class="line"></span><br><span class="line">    html = html + &quot;&lt;tr&gt;&quot;</span><br><span class="line">    For i = 1 To allcols</span><br><span class="line">        html = html + &quot;&lt;th&gt;&quot; + sht.Cells(1, i).Value + &quot;&lt;/th&gt;&quot;</span><br><span class="line">    Next</span><br><span class="line">    html = html + &quot;&lt;/tr&gt;&quot;</span><br><span class="line"></span><br><span class="line">    Debug.Print html</span><br><span class="line"></span><br><span class="line">    genTableHeader = html</span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>生成每位老师的HTML数据表信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Function genTeacherData(ByVal sht As Worksheet, allcols As Integer, allrows As Integer, ByVal teacher As String, tIndex As Integer)</span><br><span class="line">    &apos;生成每位老师的数据字串</span><br><span class="line">    Dim t As String, html As String, tdVal As String</span><br><span class="line"></span><br><span class="line">    For r = 2 To allrows</span><br><span class="line">        t = sht.Cells(r, tIndex)</span><br><span class="line">        &apos;Debug.Print &quot;第&quot; &amp; r &amp; &quot;行教师：&quot; &amp; t</span><br><span class="line"></span><br><span class="line">        If InStr(t, teacher) &lt;&gt; 0 Then</span><br><span class="line">            &apos;如果包含当前教师，则生成当前行数据</span><br><span class="line">            Debug.Print &quot;包含当前教师：&quot; &amp; teacher</span><br><span class="line"></span><br><span class="line">            html = html + &quot;&lt;tr&gt;&quot;</span><br><span class="line">            For i = 1 To allcols</span><br><span class="line">                tdVal = sht.Cells(r, i).Value</span><br><span class="line">                If tdVal = &quot;&quot; Then</span><br><span class="line">                    html = html + &quot;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&quot;</span><br><span class="line">                Else</span><br><span class="line">                    html = html + &quot;&lt;td&gt;&quot; + sht.Cells(r, i).Value + &quot;&lt;/td&gt;&quot;</span><br><span class="line">                End If</span><br><span class="line">            Next</span><br><span class="line">            html = html + &quot;&lt;/tr&gt;&quot; &amp; Chr(13) &amp; Chr(10)</span><br><span class="line">        End If</span><br><span class="line">    Next</span><br><span class="line"></span><br><span class="line">    genTeacherData = html</span><br><span class="line"></span><br><span class="line">End Function</span><br></pre></td></tr></table></figure></p>
+<p>最后还有一个取消按钮的功能，就是关闭窗口，一条语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Private Sub CancelBtn_Click()</span><br><span class="line">    Unload Me</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>终于写完了，其实已经做完好久了，只是现在才把这篇文档整理出来，现在不管多少条记录，都可以通过这个功能发送邮件了，邮件合并的操作也省了，试了一下，效果还是很不错的，哈哈:D</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/01/withvba1/" rel="next" title="改用VBA完成自动化任务">
+                <i class="fa fa-chevron-left"></i> 改用VBA完成自动化任务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="zhouf" />
+            
+              <p class="site-author-name" itemprop="name">zhouf</p>
+              <p class="site-description motion-element" itemprop="description">这是我的个人博客空间，欢迎大家的光临</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                之前的博客
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.blogjava.net/zhouf" title="蒧经阁" target="_blank">蒧经阁</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://zhouft.blog.sohu.com/" title="好地方" target="_blank">好地方</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x8BBE;&#x8BA1;" class="headerlink" title="&#x8BBE;&#x8BA1;"></a>&#x8BBE;&#x8BA1;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完成界面"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5B8C;&#x6210;&#x754C;&#x9762;" class="headerlink" title="&#x5B8C;&#x6210;&#x754C;&#x9762;"></a>&#x5B8C;&#x6210;&#x754C;&#x9762;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序模块部分"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x7A0B;&#x5E8F;&#x6A21;&#x5757;&#x90E8;&#x5206;" class="headerlink" title="&#x7A0B;&#x5E8F;&#x6A21;&#x5757;&#x90E8;&#x5206;"></a>&#x7A0B;&#x5E8F;&#x6A21;&#x5757;&#x90E8;&#x5206;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#界面功能处理"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x754C;&#x9762;&#x529F;&#x80FD;&#x5904;&#x7406;" class="headerlink" title="&#x754C;&#x9762;&#x529F;&#x80FD;&#x5904;&#x7406;"></a>&#x754C;&#x9762;&#x529F;&#x80FD;&#x5904;&#x7406;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhouf</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
